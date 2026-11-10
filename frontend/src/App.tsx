@@ -11,7 +11,6 @@ function App() {
   const [files, setFiles] = useState<File[]>([])
   const [previews, setPreviews] = useState<FilePreview[]>([])
   const [loading, setLoading] = useState(false)
-  const [loadingStep, setLoadingStep] = useState(0)
   const [result, setResult] = useState<ReviewResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [health, setHealth] = useState<HealthData | null>(null)
@@ -84,12 +83,6 @@ function App() {
     setLoading(true)
     setError(null)
     setResult(null)
-    setLoadingStep(0)
-    const stepTimers = [
-      setTimeout(() => setLoadingStep(1), 500),
-      setTimeout(() => setLoadingStep(2), 2000),
-      setTimeout(() => setLoadingStep(3), 5000),
-    ]
     if (abortControllerRef.current) {
       abortControllerRef.current.abort()
     }
@@ -121,7 +114,6 @@ function App() {
           : 'A network error occurred. Please make sure the Backend Server is running.'
       )
     } finally {
-      stepTimers.forEach(clearTimeout)
       setLoading(false)
     }
   }
@@ -170,7 +162,7 @@ function App() {
           <p>{error}</p>
         </div>
       )}
-      {loading && <LoadingOverlay loadingStep={loadingStep} selectedCount={selectedPdfIds.length} />}
+      {loading && <LoadingOverlay selectedCount={selectedPdfIds.length} />}
       {result && result.result && (
         <ResultsView result={result} onReset={handleReset} />
       )}

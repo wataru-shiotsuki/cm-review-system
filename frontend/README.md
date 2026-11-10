@@ -1,4 +1,4 @@
-# CM考査 自動化システム — フロントエンド
+# CM考査支援システム — フロントエンド
 
 React 19 + TypeScript + Vite 製の、絵コンテ考査システムのUI。
 
@@ -23,7 +23,7 @@ npm run build # 型チェック + 本番ビルド
 
 ## バックエンド連携
 
-`vite.config.ts` で以下を localhost:8000 にプロキシ:
+画面は `VITE_API_BASE`（未設定時は `http://localhost:8000`）へ直接接続します。`vite.config.ts` には、相対パスでアクセスする場合の開発用プロキシも設定しています。
 
 - `/api/*` — REST API (health, guidelines, review)
 - `/guidelines/*` — ガイドラインPDFの直接配信

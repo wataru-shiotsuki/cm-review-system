@@ -27,7 +27,7 @@ export default function ResultsView({ result, onReset }: ResultsViewProps) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
             <h3 className="issues-title" style={{ marginBottom: 0 }}>Results by Cut</h3>
             <span style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>
-              * Page numbers correspond to the PDF file's actual page numbers (viewer display)
+              * Page references are checked when the quoted text is found. Verify them in the source PDF.
             </span>
           </div>
           <CutView issues={findings.issues} positivePoints={findings.positive_points || []} />
